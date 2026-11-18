@@ -1,0 +1,65 @@
+{
+  "accounts": 30000,
+  "default_rate": 0.2212,
+  "n_features": 14,
+  "champion": "hist_gradient_boosting",
+  "champion_auc": 0.7135,
+  "champion_ece": 0.0115,
+  "auc_early_window": 0.7135,
+  "auc_late_window": 0.7507,
+  "score_psi_early_vs_late": 0.0136,
+  "features_past_investigate": 2,
+  "worst_feature": "payment_ratio",
+  "worst_feature_psi": 0.2357,
+  "best_single_feature": "months_delinquent",
+  "best_single_feature_auc": 0.6311,
+  "discrimination_floor": 0.6511,
+  "max_false_decline_gap": 0.083,
+  "faults_injected": 4,
+  "faults_detected_output_only": 3,
+  "faults_detected_with_input_psi": 4,
+  "clean_batches": 12,
+  "clean_batches_alerting_output_only": 0,
+  "clean_batches_alerting_full": 0,
+  "fault_detail": [
+    {
+      "fault": "schema_drop",
+      "detected_output_only": true,
+      "detected_full": true,
+      "rules": [
+        "input_drift",
+        "null_rate"
+      ]
+    },
+    {
+      "fault": "stuck_feature",
+      "detected_output_only": false,
+      "detected_full": true,
+      "rules": [
+        "input_drift"
+      ]
+    },
+    {
+      "fault": "score_shift",
+      "detected_output_only": true,
+      "detected_full": true,
+      "rules": [
+        "input_drift",
+        "score_shift"
+      ]
+    },
+    {
+      "fault": "latency_spike",
+      "detected_output_only": true,
+      "detected_full": true,
+      "rules": [
+        "latency"
+      ]
+    }
+  ],
+  "blocked": {
+    "naive_bayes": [
+      "calibration"
+    ]
+  }
+}

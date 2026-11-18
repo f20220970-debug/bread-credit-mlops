@@ -1,0 +1,33 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install -r requirements.txt
+      - name: Unit tests
+        run: python -m pytest tests
+      - name: Fetch the source panel
+        run: python src/get_data.py
+      - name: Run the full pipeline
+        run: python pipeline/run.py
+      - name: Check the pipeline promoted a champion
+        run: |
+          python - <<'PY'
+          import json, sys
+          s = json.load(open("results/summary.json"))
+          assert s["champion"], "no model cleared the promotion gates"
+          assert s["faults_detected_with_input_psi"] == s["faults_injected"], \
+              "the serving monitor missed an injected fault"
+          print("champion:", s["champion"], "| auc", s["champion_auc"])
+          PY

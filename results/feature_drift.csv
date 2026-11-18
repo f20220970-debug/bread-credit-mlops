@@ -1,0 +1,15 @@
+feature,psi,ks,band
+payment_ratio,0.2357,0.1878,investigate
+paid_latest,0.1308,0.1752,investigate
+paid_mean,0.0857,0.1336,stable
+utilisation,0.0575,0.0883,stable
+bill_trend,0.0381,0.0841,stable
+balance_growth,0.0346,0.0655,stable
+bill_mean,0.0322,0.0685,stable
+bill_latest,0.0271,0.0614,stable
+pay_status_mean,0.0226,0.0387,stable
+pay_status_max,0.018,0.0475,stable
+months_delinquent,0.0144,0.0475,stable
+pay_status_latest,0.0113,0.0309,stable
+limit_bal,0.0,0.0,stable
+age,0.0,0.0,stable

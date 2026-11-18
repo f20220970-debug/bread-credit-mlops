@@ -1,0 +1,196 @@
+{
+  "champion": {
+    "version": 2,
+    "model": "hist_gradient_boosting",
+    "auc": 0.7134970324200104,
+    "ece": 0.011524447135678672,
+    "max_false_decline_gap": 0.083
+  },
+  "history": [
+    {
+      "version": 1,
+      "model": "logistic_baseline",
+      "recorded_at": "2026-11-18T05:13:25+00:00",
+      "params": {
+        "seed": 0,
+        "cutoff_rate": 0.2,
+        "discrimination_floor": 0.6511,
+        "floor_source": "best single feature (months_delinquent) + 0.02"
+      },
+      "metrics": {
+        "auc": 0.6853,
+        "ece": 0.0134,
+        "auc_late_window": 0.7205,
+        "max_false_decline_gap": 0.1072,
+        "score_ms_per_1k": 0.6663,
+        "cutoff": 0.2439
+      },
+      "gates": [
+        {
+          "gate": "discrimination",
+          "metric": "auc",
+          "value": 0.6853,
+          "threshold": 0.6511,
+          "passed": true,
+          "detail": "must beat the best single-feature rule by a clear margin, or the model is not earning the pipeline it needs"
+        },
+        {
+          "gate": "calibration",
+          "metric": "ece",
+          "value": 0.0134,
+          "threshold": 0.03,
+          "passed": true,
+          "detail": "limits and provisions are set off predicted probabilities, so the number has to mean what it says, not merely rank correctly"
+        },
+        {
+          "gate": "segment_stability",
+          "metric": "max_false_decline_gap",
+          "value": 0.1072,
+          "threshold": 0.15,
+          "passed": true,
+          "detail": "no age or education band may absorb a disproportionate share of false declines at the operating cutoff"
+        },
+        {
+          "gate": "latency",
+          "metric": "score_ms_per_1k",
+          "value": 0.6663,
+          "threshold": 50.0,
+          "passed": true,
+          "detail": "batch scoring has to finish inside its window"
+        }
+      ],
+      "challenger": {
+        "applies": false,
+        "promote": true,
+        "reason": "no incumbent; this candidate becomes the baseline champion"
+      },
+      "promoted": true,
+      "blocked_by": []
+    },
+    {
+      "version": 2,
+      "model": "hist_gradient_boosting",
+      "recorded_at": "2026-11-18T05:13:25+00:00",
+      "params": {
+        "seed": 0,
+        "cutoff_rate": 0.2,
+        "discrimination_floor": 0.6511,
+        "floor_source": "best single feature (months_delinquent) + 0.02"
+      },
+      "metrics": {
+        "auc": 0.7135,
+        "ece": 0.0115,
+        "auc_late_window": 0.7507,
+        "max_false_decline_gap": 0.083,
+        "score_ms_per_1k": 1.8115,
+        "cutoff": 0.2804
+      },
+      "gates": [
+        {
+          "gate": "discrimination",
+          "metric": "auc",
+          "value": 0.7135,
+          "threshold": 0.6511,
+          "passed": true,
+          "detail": "must beat the best single-feature rule by a clear margin, or the model is not earning the pipeline it needs"
+        },
+        {
+          "gate": "calibration",
+          "metric": "ece",
+          "value": 0.0115,
+          "threshold": 0.03,
+          "passed": true,
+          "detail": "limits and provisions are set off predicted probabilities, so the number has to mean what it says, not merely rank correctly"
+        },
+        {
+          "gate": "segment_stability",
+          "metric": "max_false_decline_gap",
+          "value": 0.083,
+          "threshold": 0.15,
+          "passed": true,
+          "detail": "no age or education band may absorb a disproportionate share of false declines at the operating cutoff"
+        },
+        {
+          "gate": "latency",
+          "metric": "score_ms_per_1k",
+          "value": 1.8115,
+          "threshold": 50.0,
+          "passed": true,
+          "detail": "batch scoring has to finish inside its window"
+        }
+      ],
+      "challenger": {
+        "applies": true,
+        "promote": true,
+        "auc_gain": 0.0282,
+        "ece_delta": -0.0019,
+        "gap_delta": -0.0242,
+        "reason": "beats the champion by +0.0282 AUC with no regression"
+      },
+      "promoted": true,
+      "blocked_by": []
+    },
+    {
+      "version": 3,
+      "model": "naive_bayes",
+      "recorded_at": "2026-11-18T05:13:25+00:00",
+      "params": {
+        "seed": 0,
+        "cutoff_rate": 0.2,
+        "discrimination_floor": 0.6511,
+        "floor_source": "best single feature (months_delinquent) + 0.02"
+      },
+      "metrics": {
+        "auc": 0.676,
+        "ece": 0.1249,
+        "auc_late_window": 0.7094,
+        "max_false_decline_gap": 0.1001,
+        "score_ms_per_1k": 0.4288,
+        "cutoff": 0.3171
+      },
+      "gates": [
+        {
+          "gate": "discrimination",
+          "metric": "auc",
+          "value": 0.676,
+          "threshold": 0.6511,
+          "passed": true,
+          "detail": "must beat the best single-feature rule by a clear margin, or the model is not earning the pipeline it needs"
+        },
+        {
+          "gate": "calibration",
+          "metric": "ece",
+          "value": 0.1249,
+          "threshold": 0.03,
+          "passed": false,
+          "detail": "limits and provisions are set off predicted probabilities, so the number has to mean what it says, not merely rank correctly"
+        },
+        {
+          "gate": "segment_stability",
+          "metric": "max_false_decline_gap",
+          "value": 0.1001,
+          "threshold": 0.15,
+          "passed": true,
+          "detail": "no age or education band may absorb a disproportionate share of false declines at the operating cutoff"
+        },
+        {
+          "gate": "latency",
+          "metric": "score_ms_per_1k",
+          "value": 0.4288,
+          "threshold": 50.0,
+          "passed": true,
+          "detail": "batch scoring has to finish inside its window"
+        }
+      ],
+      "challenger": {
+        "applies": false,
+        "promote": false,
+        "reason": "did not clear the absolute floors"
+      },
+      "promoted": false,
+      "blocked_by": [
+        "calibration"
+      ]
+    }
+  ]
+}
